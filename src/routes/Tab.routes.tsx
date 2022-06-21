@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from '../screens/Home';
+import { Home } from '../screens/Home';
 
 import { Feather, AntDesign } from '@expo/vector-icons';
 
@@ -25,7 +25,7 @@ export function TabRoutes() {
         headerShown: false
       }}
     >
-      <Screen name='Home' component={Home}
+      <Screen name='HomeTab' component={Home}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Feather name='home' color={color} size={size} />

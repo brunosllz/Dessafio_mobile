@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, TouchableOpacityProps, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 
 interface ButtonProps extends TouchableOpacityProps {
@@ -8,15 +8,16 @@ interface ButtonProps extends TouchableOpacityProps {
 
 export function Button({ title, ...rest }: ButtonProps) {
   return (
-    <View>
-      <TouchableOpacity style={styles.container}>
-        <Text>
-          {title}
-        </Text>
+    <TouchableOpacity
+      style={styles.container}
+      {...rest}
+    >
+      <Text>
+        {title}
+      </Text>
 
-        <Entypo name='chevron-small-right' size={24} />
-      </TouchableOpacity>
-    </View>
+      <Entypo name='chevron-small-right' size={24} />
+    </TouchableOpacity>
   );
 }
 

@@ -1,11 +1,23 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {
   View,
   ScrollView,
-  StyleSheet
+  StyleSheet,
+  Text
 } from 'react-native';
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
 import { Button } from '../../components/Button';
+
+interface NavigationProps {
+  navigate: (
+    screen: string,
+    products?: {
+
+    }
+  ) => void;
+}
 
 const produtos = [
   {
@@ -22,28 +34,56 @@ const produtos = [
     id: "3",
     title: "Calças",
   },
-
   {
     id: "4",
     title: "Moletons",
+    products: [
+      {
+        id: '1',
+        title: 'Moletom A',
+        price: '500,00'
+      },
+      {
+        id: '2',
+        title: 'Moletom B',
+        price: '500,00'
+      },
+      {
+        id: '3',
+        title: 'Moletom C',
+        price: '500,00'
+      }
+    ]
   },
-
   {
     id: "5",
     title: "Vestidos",
   }
 ]
 
-export default function Home() {
+export function Home() {
+  const navigation = useNavigation<NavigationProps>();
+
+  function handleProdutsPage() {
+    navigation.navigate('Products')
+  }
+
   return (
     <View style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false} style={styles.container_2}>
+      <Text style={styles.text}>
+        Olá Luiz,{'\n'} tenha um otimo dia!
+      </Text>
+
+      <ScrollView showsVerticalScrollIndicator={false} >
         <View style={styles.wrapper_button}>
           {
             produtos.map(item => (
-              <Button key={item.id} title={item.title} />
+              <Button
+                key={item.id}
+                title={item.title}
+                onPress={() => handleProdutsPage(item)}
+              />
             ))
-
           }
         </View>
       </ScrollView>
@@ -56,33 +96,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#92B9BD",
+    paddingTop: getStatusBarHeight() + 50,
+    paddingHorizontal: 24
   },
-
-  container_2: {
-
+  text: {
+    color: '#000',
+    fontSize: 30
   },
-
-  scroll: {
-    width: 300,
-    height: 200,
-    marginTop: 100,
-    marginLeft: 30,
-  },
-
-  foto: {
-    width: 100,
-    height: 100,
-  },
-
-  botao: {
-    borderRadius: 20,
-    width: 50,
-
-  },
-
   wrapper_button: {
-    paddingHorizontal: 15,
     marginTop: 210,
-  },
-
-})
+  }
+});
