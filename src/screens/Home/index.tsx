@@ -11,23 +11,23 @@ import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { Button } from '../../components/Button';
 import { categories } from '../../utils/categories';
 
-export interface Products {
+export interface IProducts {
   id: string;
   name: string;
   price: string;
 }
 
-export interface Categories {
+export interface ICategories {
   id: string;
   name: string;
-  products: Products[];
+  products: IProducts[];
 }
 
 interface NavigationProps {
   navigate: (
     screen: string,
     category: {
-      category: Categories
+      products: IProducts[]
     }
   ) => void;
 }
@@ -35,8 +35,8 @@ interface NavigationProps {
 export function Home() {
   const navigation = useNavigation<NavigationProps>();
 
-  function handleProdutsPage(category: Categories) {
-    navigation.navigate('Products', { category })
+  function handleProdutsPage(products: IProducts[]) {
+    navigation.navigate('Products', { products })
   }
 
   return (
@@ -52,7 +52,7 @@ export function Home() {
               <Button
                 key={category.id}
                 title={category.name}
-                onPress={() => handleProdutsPage(category)}
+                onPress={() => handleProdutsPage(category.products)}
               />
             ))
           }
