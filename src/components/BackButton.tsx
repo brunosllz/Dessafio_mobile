@@ -1,12 +1,12 @@
 import React from 'react';
-
-import { BorderlessButton, BorderlessButtonProps } from 'react-native-gesture-handler';
-import { Feather } from '@expo/vector-icons';
 import { StyleSheet } from 'react-native';
+import { BorderlessButton, BorderlessButtonProps } from 'react-native-gesture-handler';
 
-interface BackButtonProps extends BorderlessButtonProps { }
+import { Feather } from '@expo/vector-icons';
 
-export function BackButton({ ...rest }: BackButtonProps) {
+interface IBackButtonProps extends BorderlessButtonProps { }
+
+export function BackButton({ ...rest }: IBackButtonProps) {
   return (
     <BorderlessButton
       style={styles.container}

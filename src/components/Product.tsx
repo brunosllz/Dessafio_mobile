@@ -1,13 +1,19 @@
 import React from 'react';
-import { Text, TouchableOpacityProps, View, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import {
+  Text,
+  TouchableOpacityProps,
+  View,
+  TouchableOpacity,
+  StyleSheet,
+  Dimensions
+} from 'react-native';
 
-interface ProductProps extends TouchableOpacityProps {
+interface IProductProps extends TouchableOpacityProps {
   name: string;
   price: string;
 }
 
-export function Product({ name, price, ...rest }: ProductProps) {
-
+export function Product({ name, price, ...rest }: IProductProps) {
   return (
     <TouchableOpacity
       style={styles.container}

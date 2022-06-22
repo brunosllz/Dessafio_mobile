@@ -1,3 +1,11 @@
+import { IProducts } from "../screens/Home";
+
+export interface ICategories {
+  id: string;
+  name: string;
+  products: IProducts[];
+}
+
 export const categories = [
   {
     id: '1',

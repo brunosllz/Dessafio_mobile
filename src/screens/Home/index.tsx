@@ -17,13 +17,7 @@ export interface IProducts {
   price: string;
 }
 
-export interface ICategories {
-  id: string;
-  name: string;
-  products: IProducts[];
-}
-
-interface NavigationProps {
+interface INavigationProps {
   navigate: (
     screen: string,
     category: {
@@ -33,7 +27,7 @@ interface NavigationProps {
 }
 
 export function Home() {
-  const navigation = useNavigation<NavigationProps>();
+  const navigation = useNavigation<INavigationProps>();
 
   function handleProdutsPage(products: IProducts[]) {
     navigation.navigate('Products', { products })

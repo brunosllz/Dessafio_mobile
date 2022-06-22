@@ -6,23 +6,37 @@ import {
   View
 } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
-
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
-import { Product } from '../../components/Product';
+
 import { IProducts } from '../Home';
+import { Product } from '../../components/Product';
 import { BackButton } from '../../components/BackButton';
 
-interface Params {
+interface IParams {
   products: IProducts[];
+}
+
+interface INavigationProps {
+  goBack: () => void;
+  navigate: (
+    screen: string,
+    category: {
+      product: IProducts
+    }
+  ) => void;
 }
 
 export function Products() {
   const route = useRoute();
-  const { products } = route.params as Params;
-  const navigation = useNavigation();
+  const { products } = route.params as IParams;
+  const navigation = useNavigation<INavigationProps>();
 
   function handleBack() {
     navigation.goBack();
+  }
+
+  function handleProductDetails(product: IProducts) {
+    navigation.navigate('ProductDetails', { product })
   }
 
   return (
@@ -41,6 +55,7 @@ export function Products() {
                 key={product.id}
                 name={product.name}
                 price={product.price}
+                onPress={() => handleProductDetails(product)}
               />
             ))
           }

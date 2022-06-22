@@ -1,12 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  TouchableOpacityProps
+} from 'react-native';
+
 import { Entypo } from '@expo/vector-icons';
 
-interface ButtonProps extends TouchableOpacityProps {
+interface IButtonProps extends TouchableOpacityProps {
   title: string
 }
 
-export function Button({ title, ...rest }: ButtonProps) {
+export function Button({ title, ...rest }: IButtonProps) {
   return (
     <TouchableOpacity
       style={styles.container}
