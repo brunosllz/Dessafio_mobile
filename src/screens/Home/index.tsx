@@ -9,63 +9,34 @@ import {
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
 import { Button } from '../../components/Button';
+import { categories } from '../../utils/categories';
+
+export interface Products {
+  id: string;
+  name: string;
+  price: string;
+}
+
+export interface Categories {
+  id: string;
+  name: string;
+  products: Products[];
+}
 
 interface NavigationProps {
   navigate: (
     screen: string,
-    products?: {
-
+    category: {
+      category: Categories
     }
   ) => void;
 }
 
-const produtos = [
-  {
-    id: "1",
-    title: "Novidades",
-  },
-
-  {
-    id: "2",
-    title: "Camisas",
-  },
-
-  {
-    id: "3",
-    title: "Calças",
-  },
-  {
-    id: "4",
-    title: "Moletons",
-    products: [
-      {
-        id: '1',
-        title: 'Moletom A',
-        price: '500,00'
-      },
-      {
-        id: '2',
-        title: 'Moletom B',
-        price: '500,00'
-      },
-      {
-        id: '3',
-        title: 'Moletom C',
-        price: '500,00'
-      }
-    ]
-  },
-  {
-    id: "5",
-    title: "Vestidos",
-  }
-]
-
 export function Home() {
   const navigation = useNavigation<NavigationProps>();
 
-  function handleProdutsPage() {
-    navigation.navigate('Products')
+  function handleProdutsPage(category: Categories) {
+    navigation.navigate('Products', { category })
   }
 
   return (
@@ -77,17 +48,16 @@ export function Home() {
       <ScrollView showsVerticalScrollIndicator={false} >
         <View style={styles.wrapper_button}>
           {
-            produtos.map(item => (
+            categories.map(category => (
               <Button
-                key={item.id}
-                title={item.title}
-                onPress={() => handleProdutsPage(item)}
+                key={category.id}
+                title={category.name}
+                onPress={() => handleProdutsPage(category)}
               />
             ))
           }
         </View>
       </ScrollView>
-
     </View>
   )
 }

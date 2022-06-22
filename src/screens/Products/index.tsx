@@ -1,16 +1,48 @@
-import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  View
+} from 'react-native';
+import { useRoute } from '@react-navigation/native';
+
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+import { Product } from '../../components/Product';
+import { Categories } from '../Home';
 
-
+interface Params {
+  category: Categories
+}
 
 export function Products() {
+  // const [havaCategory, setHaveCategory] = useState({} as Categories)
+  const route = useRoute();
+  const { category } = route.params as Params;
+
+  // useEffect(() => {
+  //   setHaveCategory(category)
+  // }, []);
+
   return (
     <View style={styles.container}>
-      <ScrollView>
-        <Text style={styles.text}>
-          Buscar
-        </Text>
+      <Text style={styles.text}>
+        Buscar
+      </Text>
+
+      <ScrollView style={styles.productsList}>
+        <View style={styles.productsWrapper}>
+          {
+            category.products.map(product => (
+              <Product
+                key={product.id}
+                name={product.name}
+                price={product.price}
+              />
+            ))
+          }
+        </View>
+
       </ScrollView>
     </View>
   );
@@ -27,4 +59,13 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: 30
   },
+  productsList: {
+    flex: 1,
+    marginTop: 32
+  },
+  productsWrapper: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between'
+  }
 });
