@@ -37,10 +37,11 @@ export function Home() {
 
   return (
     <View style={styles.container}>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} scrollEventThrottle={16}>
+      <ScrollView style={styles.banner} horizontal showsHorizontalScrollIndicator={false} scrollEventThrottle={16}>
         {
           bannerContents.map(content => (
             <BannerContent
+              key={content.id}
               name={content.name}
             />
           ))
@@ -75,12 +76,15 @@ const styles = StyleSheet.create({
     paddingTop: getStatusBarHeight() + 50,
     paddingHorizontal: 24
   },
+  banner: {
+    height: 1
+  },
   text: {
     color: '#000',
     fontSize: 30,
     marginTop: 32
   },
   wrapper_button: {
-    marginTop: 210,
+    marginTop: 32,
   }
 });
