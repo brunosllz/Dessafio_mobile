@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     width: Dimensions.get('window').width / 2.5,
     height: 170,
+    borderRadius: 10
   },
   nameText: {
     fontSize: 16,

@@ -8,7 +8,9 @@ import {
 } from 'react-native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
+import { BannerContent } from '../../components/BannerContent';
 import { Button } from '../../components/Button';
+import { bannerContents } from '../../utils/bannerContents';
 import { categories } from '../../utils/categories';
 
 export interface IProducts {
@@ -35,11 +37,21 @@ export function Home() {
 
   return (
     <View style={styles.container}>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} scrollEventThrottle={16}>
+        {
+          bannerContents.map(content => (
+            <BannerContent
+              name={content.name}
+            />
+          ))
+        }
+      </ScrollView>
+
       <Text style={styles.text}>
         Olá Luiz,{'\n'} tenha um otimo dia!
       </Text>
 
-      <ScrollView showsVerticalScrollIndicator={false} >
+      <ScrollView showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
         <View style={styles.wrapper_button}>
           {
             categories.map(category => (
@@ -65,7 +77,8 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#000',
-    fontSize: 30
+    fontSize: 30,
+    marginTop: 32
   },
   wrapper_button: {
     marginTop: 210,

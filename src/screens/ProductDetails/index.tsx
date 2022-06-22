@@ -21,7 +21,6 @@ interface IParams {
   }
 }
 
-
 export function ProductDetails() {
   const route = useRoute();
   const { product } = route.params as IParams;
